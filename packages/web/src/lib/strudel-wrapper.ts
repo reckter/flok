@@ -36,6 +36,7 @@ export class StrudelWrapper {
   protected mini?: any;
   protected core?: any;
   protected draw?: any;
+  protected webaudio?: any;
 
   constructor({
     onError,
@@ -56,6 +57,8 @@ export class StrudelWrapper {
     this.mini = await import("@strudel/mini");
     this.core = await import("@strudel/core");
     this.draw = await import("@strudel/draw");
+    this.webaudio = await import("@strudel/webaudio");
+
     await evalScope(
       this.core,
       import("@strudel/midi"),
@@ -65,7 +68,7 @@ export class StrudelWrapper {
       import("@strudel/osc"),
       import("@strudel/serial"),
       import("@strudel/soundfonts"),
-      import("@strudel/webaudio"),
+      this.webaudio,
       controls
     );
     try {
